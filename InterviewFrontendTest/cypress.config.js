@@ -1,11 +1,15 @@
-module.exports = {
-  chromeWebSecurity: false,
+const { defineConfig } = require("cypress");
+
+module.exports = defineConfig({
   e2e: {
-    // We've imported your old cypress plugins here.
-    // You may want to clean this up later by importing these.
     setupNodeEvents(on, config) {
-      return require('./cypress/plugins/index.js')(on, config)
+      // implement node event listeners here
     },
-    baseUrl: 'https://www.saucedemo.com/',
+    specPattern: 'cypress/integration/assessments/*.js',
+    screenshotsFolder: 'cypress/failures/ screenshots'
   },
-}
+  chromeWebSecurity: false,
+  
+  viewportHeight: 720,
+  viewportWidth: 1280,
+});
